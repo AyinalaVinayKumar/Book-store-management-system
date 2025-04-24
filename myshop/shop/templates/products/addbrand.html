@@ -1,0 +1,62 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+{% include 'admin/navbar1.html' %}
+
+
+<div class="container mt-5 p-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <div class="text-center mb-4">
+            <div class="logo-container d-inline-block">
+              <img src="{{ url_for('static', filename='images/Logo.jpg') }}" alt="Logo" class="img-fluid">
+            </div>
+          </div>
+          {% include "_messages.html" %}
+          {% if brands %}
+            <h2 class="text-center mb-4">Add a Brand</h2>
+            <form action="" method="POST">
+              <div class="mb-3">
+                <input type="text" name="brand" class="form-control" placeholder="Brand Name" required>
+              </div>
+              <button type="submit" class="btn btn-primary">Add Brand</button>
+            </form>
+          {% else %}
+            <h2 class="text-center mb-4">Add a Category</h2>
+            <form action="" method="POST">
+              <div class="mb-3">
+                <input type="text" name="category" class="form-control" placeholder="Category Name" required>
+              </div>
+              <button type="submit" class="btn btn-primary">Add Category</button>
+            </form>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .logo-container {
+    width: 150px; 
+    height: 150px; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #ddd; 
+    border-radius: 10px; 
+    overflow: hidden;
+  }
+
+  .logo-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; 
+  }
+</style>
+
+{% endblock content %}
+

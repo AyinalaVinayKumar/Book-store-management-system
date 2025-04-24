@@ -1,0 +1,203 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+{% include 'navbar.html' %}
+
+<div class="container mt-3 p-5">
+  {% include '_messages.html' %}
+  <div class="row p-5">
+    <div class="col-md-12">
+      <!-- Order Details -->
+      <div class="card shadow-lg mb-4">
+        <div class="card-body">
+          <h5 class="card-title">Order Details</h5>
+          <p class="card-text">
+            <strong>Invoice:</strong> {{ orders.invoice }}<br>
+            <strong>Status:</strong> {{ orders.status }}<br>
+            <strong>Customer Name:</strong> {{ customer.name }}<br>
+            <strong>Customer Email:</strong> {{ customer.email }}<br>
+            <strong>Customer Contact:</strong> {{ customer.contact }}<br>
+          </p>
+        </div>
+      </div>
+
+      <!-- Order Items Table -->
+      <div class="card shadow-lg mb-4">
+        <div class="card-body">
+          <table class="table table-bordered table-striped table-hover">
+            <thead class="table-dark">
+              <tr>
+                <th>Sr</th>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Discount</th>
+                <th>Subtotal</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for key, product in orders.orders.items() %}
+              {% set discount="%0.2f"|format((product.discount/100)* product.price|float) %}
+              <tr>
+                <td>{{ loop.index }}</td>
+                <td>{{ product.name }}</td>
+                <td>{{ product.color|capitalize }}</td>
+                <td>₹ {{ product.price }}</td>
+                <td>{{ product.quantity }}</td>
+                {% if product.discount %}
+                <td>{{ product.discount }} % &nbsp; &nbsp; is ₹ {{ discount }}</td>
+                {% else %}
+                <td></td>
+                {% endif %}
+                {% set subtotal = product.quantity|int * product.price|float %}
+                <td>₹ {{ "%0.2f"|format((subtotal|float - discount|float)) }}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Payment and Summary -->
+      <div class="card shadow-lg">
+        <div class="card-body">
+          <table class="table table-borderless">
+            <tr>
+              
+              
+              <td width="35%"></td>
+              <td colspan="3">
+                <h4 class="text-muted p-3">Tax: ₹ {{ tax }}</h4>
+              </td>
+              <td colspan="4">
+                <h4 class="text-muted fw-bold p-3">Grand Total: ₹ {{ grandTotal }}</h4>
+              </td>
+              <td>
+                {% if orders.status == 'Paid' %}
+                  <span class="text-success">Paid</span>
+                {% else %}
+                <form action="{{ url_for('payment') }}" method="POST">
+                    {% set amount = grandTotal.replace('.', '') %}
+                    <input type="hidden" name="amount" value="{{ amount }}">
+                    <input type="hidden" name="invoice" value="{{ orders.invoice }}">
+                    <input type="hidden" name="description" value="Shop Purchase">
+                    <button type="submit" class="btn btn-outline-primary btn-lg">Pay Now</button>
+                  </form>
+                {% endif %}
+              </td>
+              
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="footer mt-3">
+  <div class="container">
+      <div class="row gy-3">
+          <div class="col-md-4 col-lg-3">
+              <h6>Book Hub</h6>
+              <p class="mb-1">Andhra Pradesh, India - 533103</p>
+              <p class="mb-1"><a href="tel:+91 9876543210" class="text-decoration-none">+91-9876543210</a></p>
+              <p class="mb-3"><a href="mailto:bookub483@gmail.com" class="text-decoration-none">bookub483@gmail.com</a></p>
+          </div>
+          <div class="col-6 col-md-4 col-lg-2">
+              <h6>Information</h6>
+              <ul class="footer-links">
+                  <li><a href="#">Shipping Policy</a></li>
+                  <li><a href="#">Returns</a></li>
+                  <li><a href="#">Terms & Conditions</a></li>
+                  <li><a href="#">Privacy Policy</a></li>
+              </ul>
+          </div>
+          <div class="col-6 col-md-4 col-lg-2">
+              <h6>My Account</h6>
+              <ul class="footer-links">
+                  <li><a href="/dashboard">My Account</a></li>
+                  <li><a href="#">Wishlist</a></li>
+                  <li><a href="/dashboard">Orders</a></li>
+                  <li><a href="/carts">Cart</a></li>
+              </ul>
+          </div>
+          <div class="col-md-8 col-lg-5">
+              <h6>Newsletter</h6>
+              <p>Sign up for updates on new arrivals and offers.</p>
+              <form class="newsletter-form">
+                  <div class="input-group mb-3">
+                      <input type="email" class="form-control" placeholder="Enter your email" aria-label="Email" aria-describedby="button-addon2">
+                      <button class="btn btn-outline-secondary" type="button" id="button-addon2">Subscribe</button>
+                  </div>
+              </form>
+              <div class="social-icons">
+                  <a href="#"><i class="bi bi-facebook"></i></a>
+                  <a href="#"><i class="bi bi-twitter"></i></a>
+                  <a href="#"><i class="bi bi-instagram"></i></a>
+                  <a href="#"><i class="bi bi-linkedin"></i></a>
+              </div>
+          </div>
+      </div>
+      <hr class="mt-4 mb-3">
+      <div class="row">
+          <div class="col-md-6 text-center text-md-start copyright">
+              <p>&copy; 2024 Book Hub. All rights reserved.</p>
+          </div>
+          <div class="col-md-6 text-center text-md-end copyright">
+              <p>Developed by Task Titans</p>
+          </div>
+      </div>
+  </div>
+</div>
+<style>
+  .footer {
+      background-color: #f8f9fa;
+      padding: 2rem 0 1rem;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif;
+      font-size: 1rem;
+  }
+  .footer h6 {
+      color: #333;
+      font-weight: 500;
+      margin-bottom: 1rem;
+      font-size: 1rem;
+  }
+  .footer-links {
+      padding: 0;
+      list-style: none;
+  }
+  .footer-links li {
+      margin-bottom: 0.5rem;
+  }
+  .footer-links a {
+      color: rgba(0, 0, 0, 0.55);
+      text-decoration: none;
+      transition: color 0.2s ease;
+  }
+  .footer-links a:hover {
+      color: rgba(0, 0, 0, 0.7);
+  }
+  .newsletter-form .form-control {
+      font-size: 1rem;
+  }
+  .social-icons a {
+      color: rgba(0, 0, 0, 0.55);
+      font-size: 1.25rem;
+      margin-right: 0.75rem;
+      transition: color 0.2s ease;
+  }
+  .social-icons a:hover {
+      color: rgba(0, 0, 0, 0.7);
+  }
+  .copyright {
+      font-size: 0.875rem;
+      color: rgba(0, 0, 0, 0.55);
+  }
+</style>
+
+
+
+{% endblock content %}

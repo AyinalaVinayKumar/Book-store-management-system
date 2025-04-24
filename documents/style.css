@@ -1,0 +1,224 @@
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.logo {
+    float: left;
+    margin-right: 20px;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+nav li {
+    margin-right: 20px;
+}
+
+nav a {
+    color: #333;
+    text-decoration: none;
+}
+
+nav a:hover {
+    color: #666;
+}
+
+.search-bar {
+    float: right;
+    margin-top: 10px;
+}
+
+.search-bar input[type="search"] {
+    width: 200px;
+    height: 30px;
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+
+.search-bar button[type="button"] {
+    height: 30px;
+    padding: 10px;
+    border: none;
+    background-color: #333;
+    color: #fff;
+    cursor: pointer;
+}
+
+.search-bar button[type="button"]:hover {
+    background-color: #666;
+}
+
+.hero-banner {
+    background-image: url('hero-banner.jpg');
+    background-size: cover;
+    height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-text {
+    color: #fff;
+    text-align: center;
+}
+
+.hero-text h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+.hero-text p {
+    font-size: 18px;
+    margin-bottom: 40px;
+}
+
+.hero-text button[type="button"] {
+    height: 40px;
+    padding: 10px 20px;
+    border: none;
+    background-color: #333;
+    color: #fff;
+    cursor: pointer;
+}
+
+.hero-text button[type="button"]:hover {
+    background-color: #666;
+}
+
+.featured-books {
+    background-color: #f7f7f7;
+    padding: 20px;
+}
+
+.book-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.book {
+    width: 25%;
+    margin: 20px;
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #ddd;
+}
+
+.book img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.book h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.book p {
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.book button[type="button"] {
+    height: 30px;
+    padding: 10px;
+    border: none;
+    background-color: #333;
+    color: #fff;
+    cursor: pointer;
+}
+
+.book button[type="button"]:hover {
+    background-color: #666;
+}
+
+.new-arrivals {
+    background-color: #f7f7f7;
+    padding: 20px;
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+footer ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+footer li {
+    margin-right: 20px;
+}
+
+footer a {
+    color: #fff;
+    text-decoration: none;
+}
+
+footer a:hover {
+    color: #ccc;
+}
+
+.social-media {
+    margin-top: 20px;
+}
+
+.social-media a {
+    margin-right: 20px;
+    font-size: 24px;
+    color: #fff;
+}
+
+.social-media a:hover {
+    color: #ccc;
+}
+
+/* Interactive Styles */
+
+.book:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.book:hover img {
+    transform: scale(1.1);
+}
+
+.search-bar input[type="search"]:focus {
+    border-color: #333;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.search-bar button[type="button"]:active {
+    background-color: #666;
+}
+
+.hero-text button[type="button"]:active {
+   background-color: #666;
+}
+
+.book button[type="button"]:active {
+    background-color: #666;
+}
+
