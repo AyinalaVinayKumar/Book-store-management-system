@@ -204,14 +204,14 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Sample Imagess of our project
 
-![image_1](sample_images/image_1.png)
+![image_1](myshop/sample_images/image_1.png)
 
 
 
-| ![Image 2](sample_images/image_2.png) | ![Image 3](sample_images/image_3.png) | ![Image 4](sample_images/image_4.png) |
+| ![Image 2](myshop/sample_images/image_2.png) | ![Image 3](myshop/sample_images/image_3.png) | ![Image 4](myshop/sample_images/image_4.png) |
 |:--------------------------------------:|:--------------------------------------:|:--------------------------------------:|
-| ![Image 5](sample_images/image_5.png) | ![Image 6](sample_images/image_6.png) | ![Image 7](sample_images/image_7.png) |
-| ![Image 8](sample_images/image_8.png) | ![Image 9](sample_images/image_9.png) | ![Image 10](sample_images/image_10.png) |
+| ![Image 5](myshop/sample_images/image_5.png) | ![Image 6](myshop/sample_images/image_6.png) | ![Image 7](myshop/sample_images/image_7.png) |
+| ![Image 8](myshop/sample_images/image_8.png) | ![Image 9](myshop/sample_images/image_9.png) | ![Image 10](myshop/sample_images/image_10.png) |
 
 
 
